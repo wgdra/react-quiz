@@ -1,0 +1,8 @@
+.form-group {
+    .form-control:focus,
+    .form-select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 0.25rem var(--primary);
+    }
+
+}

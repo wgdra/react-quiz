@@ -1,0 +1,15 @@
+.sidebar-container {
+    height: 100vh;
+
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .sidebar-header__icon {
+            font-size: 28px;
+            color: var(--primary);
+            margin-right: 18px;
+        }
+    }
+}

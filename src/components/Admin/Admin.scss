@@ -1,0 +1,21 @@
+.admin-container {
+    display: flex;
+    .content-container {
+        width: 100%;
+        .admin-content {
+            padding: 20px;
+            
+            .manager-user {
+                .button-container {
+                    margin: 20px 0px;
+                }
+                .table-user {
+                    .btn {
+                        margin: 0px 8px;
+                        min-width: 75px;
+                    }
+                }
+            }
+        }
+    }
+}
