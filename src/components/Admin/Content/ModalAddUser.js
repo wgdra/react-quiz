@@ -1,10 +1,6 @@
 import { useState } from "react";
-import { portDataUser } from "../../../services/apiService";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Modal from "react-bootstrap/Modal";
+import { postDataUser } from "../../../services/apiService";
+import { Button, Col, Form, Row, Modal } from "react-bootstrap";
 import "./Modal.scss";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,7 +24,7 @@ const ModalAddUser = (props) => {
       );
   };
 
-  function validatePassword(password) {
+  const validatePassword = (password) => {
     return (
       /[A-Z]/.test(password) &&
       /[a-z]/.test(password) &&
@@ -36,13 +32,13 @@ const ModalAddUser = (props) => {
       /^(?=.{5,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\W])/.test(password) &&
       password.length > 6
     );
-  }
+  };
 
   const checkValidateEmail = () => {
     const isEmail = validateEmail(email);
 
     if (!isEmail) {
-      return <span> bắt buộc</span>;
+      return <span style={{ fontSize: "16px", color: "red" }}> bắt buộc</span>;
     } else {
       return <BsCheck color="var(--primary)" size="20px" />;
     }
@@ -52,7 +48,7 @@ const ModalAddUser = (props) => {
     const isPassword = validatePassword(password);
 
     if (!isPassword) {
-      return ` (trên 6 kí tự, chữ hoa, số, kí tự đặc biệt)`;
+      return ` (trên 6 kí tự: chữ hoa, số, kí tự đặc biệt)`;
     } else {
       return <BsCheck color="var(--primary)" size="20px" />;
     }
@@ -78,7 +74,7 @@ const ModalAddUser = (props) => {
 
     //Call API
 
-    let data = await portDataUser(email, password, username, role, image);
+    let data = await postDataUser(email, password, username, role, image);
     if (data && data.EC !== 0) {
       return toast.error("Email đã được sử dụng");
     } else {

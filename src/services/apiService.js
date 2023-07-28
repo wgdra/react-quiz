@@ -1,6 +1,21 @@
 import instance from "../utils/axiosCustomize";
 
-const portDataUser = (email, password, username, role, image) => {
+const postLogin = (email, password) => {
+  return instance.post("/api/v1/login", {
+    email: email,
+    password: password,
+  });
+};
+
+const postRegister = (email, username, password) => {
+  return instance.post("/api/v1/register", {
+    email: email,
+    username: username,
+    password: password,
+  });
+};
+
+const postDataUser = (email, password, username, role, image) => {
   const data = new FormData();
   data.append("email", email);
   data.append("password", password);
@@ -25,8 +40,15 @@ const putDataUser = (id, username, role, image) => {
   return instance.put("/api/v1/participant", data);
 };
 
-const deleteDataUser = () => {
-  return instance.delete("/api/v1/participant");
+const deleteDataUser = (id) => {
+  return instance.delete("/api/v1/participant", { data: { id: id } });
 };
 
-export { portDataUser, getDataUser, putDataUser, deleteDataUser };
+export {
+  postLogin,
+  postRegister,
+  postDataUser,
+  getDataUser,
+  putDataUser,
+  deleteDataUser,
+};

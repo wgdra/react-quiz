@@ -11,7 +11,8 @@ const TableUser = (props) => {
       <table className="table table-bordered table-hover">
         <thead>
           <tr>
-            <th scope="col">No</th>
+            <th scope="col">NO</th>
+            <th scope="col">ID</th>
             <th scope="col">Tên</th>
             <th scope="col">Email</th>
             <th scope="col">Tài Khoản</th>
@@ -23,6 +24,7 @@ const TableUser = (props) => {
             listUser.map((item, index) => {
               return (
                 <tr key={`table-user-${index}`}>
+                  <td>{index + 1}</td>
                   <td>{item.id}</td>
                   <td>{item.username}</td>
                   <td>{item.email}</td>
@@ -43,7 +45,7 @@ const TableUser = (props) => {
                     </button>
                     <button
                       className="btn btn-danger"
-                      onClick={() => handleShowDeleteUser()}
+                      onClick={() => handleShowDeleteUser(item)}
                     >
                       Xóa
                     </button>

@@ -11,13 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import _ from "lodash";
 
 const ModalUpdateUser = (props) => {
-  const {
-    showUpdateModal,
-    setShowUpdateModal,
-    dataUpdate,
-    fetchListUser,
-    resetDataUpdate,
-  } = props;
+  const { show, setShow, dataUser, fetchListUser, resetDataUpdate } = props;
 
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -25,16 +19,16 @@ const ModalUpdateUser = (props) => {
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    if (!_.dataUpdate) {
-      setEmail(dataUpdate.email);
-      setUsername(dataUpdate.username);
-      setRole(dataUpdate.role);
+    if (!_.dataUser) {
+      setEmail(dataUser.email);
+      setUsername(dataUser.username);
+      setRole(dataUser.role);
     }
-  }, [dataUpdate]);
+  }, [dataUser]);
 
   // Handle
   const handleClose = () => {
-    setShowUpdateModal(false);
+    setShow(false);
     setUsername("");
     setRole("");
     setImage("");
@@ -42,7 +36,7 @@ const ModalUpdateUser = (props) => {
   };
 
   const handleUpdateUser = async () => {
-    let data = await putDataUser(dataUpdate.id, username, role, image);
+    let data = await putDataUser(dataUser.id, username, role, image);
     if (data && data.EC !== 0) {
       return toast.error("Lỗi");
     } else {
@@ -54,12 +48,7 @@ const ModalUpdateUser = (props) => {
 
   return (
     <>
-      <Modal
-        show={showUpdateModal}
-        onHide={handleClose}
-        size="lg"
-        backdrop="static"
-      >
+      <Modal show={show} onHide={handleClose} size="lg" backdrop="static">
         <Modal.Header closeButton>
           <Modal.Title>Cập Nhật Tài Khoản</Modal.Title>
         </Modal.Header>

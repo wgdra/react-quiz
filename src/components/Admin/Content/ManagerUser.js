@@ -13,8 +13,8 @@ const ManagerUser = (props) => {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const [dataView, setDataView] = useState({});
-  const [dataUpdate, setDataUpdate] = useState({});
+  const [dataUser, setDataUser] = useState({});
+  const [dataDelete, setDataDelete] = useState({});
   const [listUser, setListUser] = useState([]);
 
   useEffect(() => {
@@ -32,20 +32,21 @@ const ManagerUser = (props) => {
   //Handle
   const handleShowViewUser = (item) => {
     setShowViewModal(true);
-    setDataView(item);
+    setDataUser(item);
   };
 
   const handleShowUpdateUser = (item) => {
     setShowUpdateModal(true);
-    setDataUpdate(item);
-  };
-
-  const handleShowDeleteUser = () => {
-    setShowDeleteModal(true);
+    setDataUser(item);
   };
 
   const resetDataUpdate = () => {
-    setDataUpdate({});
+    setDataUser({});
+  };
+
+  const handleShowDeleteUser = (item) => {
+    setShowDeleteModal(true);
+    setDataDelete(item);
   };
 
   return (
@@ -73,18 +74,23 @@ const ManagerUser = (props) => {
       <ModalViewUser
         show={showViewModal}
         setShow={setShowViewModal}
-        dataView={dataView}
+        dataUser={dataUser}
       />
 
       <ModalUpdateUser
-        showUpdateModal={showUpdateModal}
-        setShowUpdateModal={setShowUpdateModal}
-        dataUpdate={dataUpdate}
+        show={showUpdateModal}
+        setShow={setShowUpdateModal}
+        dataUser={dataUser}
         fetchListUser={fetchListUser}
         resetDataUpdate={resetDataUpdate}
       />
 
-      <ModalDeleteUser show={showDeleteModal} setShow={setShowDeleteModal} />
+      <ModalDeleteUser
+        show={showDeleteModal}
+        setShow={setShowDeleteModal}
+        dataDelete={dataDelete}
+        fetchListUser={fetchListUser}
+      />
     </div>
   );
 };
