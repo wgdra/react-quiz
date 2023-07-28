@@ -9,10 +9,12 @@ import { postLogin } from "../../services/apiService";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { doLogin } from "../../redux/action/userAction";
+import { RotatingLines } from "react-loader-spinner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsloading] = useState(false);
 
   const cancel = useNavigate();
   const login = useNavigate();
@@ -25,12 +27,16 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
+    setIsloading(true);
+
     let data = await postLogin(email, password);
     if (data && data.EC !== 0) {
+      setIsloading(false);
       return toast.error("Email hoặc Mật khẩu chưa chính xác");
     } else {
       dispatch(doLogin(data));
       toast.success("Đăng nhập thành công!");
+      setIsloading(false);
       login("/");
     }
   };
@@ -127,10 +133,21 @@ const Login = () => {
                   </Button>
                   <Button
                     variant="btn btn-primary btn-lg"
-                    style={{ minWidth: "108px", marginLeft: "16px" }}
+                    style={{ minWidth: "130px", marginLeft: "16px" }}
                     onClick={() => handleLogin()}
+                    disabled={isLoading}
                   >
-                    Đăng nhập
+                    {isLoading === true ? (
+                      <RotatingLines
+                        strokeColor="grey"
+                        strokeWidth="5"
+                        animationDuration="0.75"
+                        width="28"
+                        visible={true}
+                      />
+                    ) : (
+                      <span>Đăng nhập</span>
+                    )}
                   </Button>
                 </div>
                 <p
