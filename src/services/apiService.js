@@ -31,6 +31,10 @@ const getDataUser = () => {
   return instance.get("/api/v1/participant/all");
 };
 
+const getQuizByUser = () => {
+  return instance.get("/api/v1/quiz-by-participant");
+};
+
 const putDataUser = (id, username, role, image) => {
   const data = new FormData();
   data.append("id", id);
@@ -50,6 +54,7 @@ export {
   postRegister,
   postDataUser,
   getDataUser,
+  getQuizByUser,
   putDataUser,
   deleteDataUser,
 };

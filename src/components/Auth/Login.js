@@ -16,15 +16,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsloading] = useState(false);
 
-  const cancel = useNavigate();
-  const login = useNavigate();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
   // Handle
-  const handleCancel = () => {
-    cancel("/");
-  };
 
   const handleLogin = async () => {
     setIsloading(true);
@@ -37,7 +33,7 @@ const Login = () => {
       dispatch(doLogin(data));
       toast.success("Đăng nhập thành công!");
       setIsloading(false);
-      login("/");
+      navigate("/");
     }
   };
 
@@ -127,7 +123,7 @@ const Login = () => {
                   <Button
                     variant="btn btn-secondary btn-lg"
                     style={{ minWidth: "108px" }}
-                    onClick={() => handleCancel()}
+                    onClick={() => navigate("/")}
                   >
                     Hủy
                   </Button>

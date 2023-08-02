@@ -20,8 +20,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [repeatpassword, setRepeatpassword] = useState(" ");
 
-  const cancel = useNavigate();
-  const register = useNavigate();
+  const navigate = useNavigate();
+
   //Validate
   const validateEmail = (email) => {
     return String(email)
@@ -73,20 +73,18 @@ const Register = () => {
   };
 
   //Handle
-  const handleCancel = () => {
-    cancel("/");
-  };
+
   const handleRegister = async () => {
-    const checkPassword = validatePassword(password);
     let res = await postRegister(email, username, password);
+    const isPassword = validatePassword(password);
 
     if (res && res.EC !== 0) {
-      return toast.error("Email hoặc Mật khẩu chưa hợp lệ");
-    } else if (!checkPassword && password !== repeatpassword) {
+      return toast.error("Email chưa hợp lệ hoặc đã được sử dụng");
+    } else if (res && res.EC === 0 && !isPassword) {
       return toast.error("Mật khẩu chưa hợp lệ");
     } else {
       toast.success("Đăng ký thành công");
-      register("/login");
+      navigate("/login");
     }
   };
 
@@ -203,7 +201,7 @@ const Register = () => {
                       <Button
                         variant="btn btn-secondary btn-lg"
                         style={{ minWidth: "108px" }}
-                        onClick={() => handleCancel()}
+                        onClick={() => navigate("/")}
                       >
                         Hủy
                       </Button>

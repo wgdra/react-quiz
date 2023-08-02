@@ -1,0 +1,11 @@
+.user-container {
+    display: flex;
+    .content-container {
+        width: 100%;
+        .user-content {
+            display: flex;
+            gap: 50px;
+            padding: 20px;
+        }
+    }
+}

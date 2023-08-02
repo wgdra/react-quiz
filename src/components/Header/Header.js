@@ -11,13 +11,7 @@ const Header = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   const navigate = useNavigate();
-  const handleLogin = () => {
-    navigate("/login");
-  };
 
-  const handleRegister = () => {
-    navigate("/register");
-  };
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary navbar-container">
@@ -43,13 +37,13 @@ const Header = () => {
                 <>
                   <button
                     className="btn btn-login"
-                    onClick={() => handleLogin()}
+                    onClick={() => navigate("/login")}
                   >
                     Đăng nhập
                   </button>
                   <button
                     className="btn btn-register"
-                    onClick={() => handleRegister()}
+                    onClick={() => navigate("/register")}
                   >
                     Đăng ký
                   </button>
