@@ -1,14 +1,17 @@
 import { Button, Card } from "react-bootstrap";
-import { getQuizByUser } from "../../services/apiService";
+import { getQuizByUser } from "../../../services/apiService";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ListQuiz = (props) => {
   const [arrQuiz, setArrQuiz] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getQuizData();
   }, []);
+
   const getQuizData = async () => {
     let res = await getQuizByUser();
 
@@ -30,7 +33,16 @@ const ListQuiz = (props) => {
               <Card.Body>
                 <Card.Title>Quiz {quiz.id}</Card.Title>
                 <Card.Text>{quiz.description}</Card.Text>
-                <Button variant="primary">Bắt đầu</Button>
+                <Button
+                  onClick={() =>
+                    navigate(`/user/quiz/${quiz.id}`, {
+                      state: { questionTitle: quiz.description },
+                    })
+                  }
+                  variant="primary"
+                >
+                  Bắt đầu
+                </Button>
               </Card.Body>
             </Card>
           );

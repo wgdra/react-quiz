@@ -35,6 +35,10 @@ const getQuizByUser = () => {
   return instance.get("/api/v1/quiz-by-participant");
 };
 
+const getQuestionsByQuizId = (quizId) => {
+  return instance.get(`/api/v1/questions-by-quiz?quizId=${quizId}`);
+};
+
 const putDataUser = (id, username, role, image) => {
   const data = new FormData();
   data.append("id", id);
@@ -55,6 +59,7 @@ export {
   postDataUser,
   getDataUser,
   getQuizByUser,
+  getQuestionsByQuizId,
   putDataUser,
   deleteDataUser,
 };

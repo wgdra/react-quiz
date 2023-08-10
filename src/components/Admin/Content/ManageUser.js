@@ -7,7 +7,7 @@ import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
 import ModalDeleteUser from "./ModalDeleteUser";
 
-const ManagerUser = (props) => {
+const ManageUser = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -95,4 +95,4 @@ const ManagerUser = (props) => {
   );
 };
 
-export default ManagerUser;
+export default ManageUser;

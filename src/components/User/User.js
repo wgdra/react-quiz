@@ -1,7 +1,7 @@
 import Sidebar from "../SideBar/Sidebar";
 import HeaderUser from "../Header/HeaderUser";
 import "./User.scss";
-import ListQuiz from "./ListQuiz";
+import { Outlet } from "react-router-dom";
 
 const User = (props) => {
   return (
@@ -12,7 +12,7 @@ const User = (props) => {
       <div className="content-container">
         <HeaderUser />
         <div className="user-content">
-          <ListQuiz />
+          <Outlet />
         </div>
       </div>
     </div>

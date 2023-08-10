@@ -58,7 +58,11 @@ function Sidebar(props) {
               Dashboard
               <Link to="/admin" />
             </MenuItem>
-            <MenuItem icon={<FaGem />}> Components </MenuItem>
+            <MenuItem icon={<FaGem />}>
+              {" "}
+              List Quiz
+              <Link to="/user/list-quiz" />
+            </MenuItem>
           </Menu>
           <Menu iconShape="circle">
             <SubMenu
@@ -68,7 +72,7 @@ function Sidebar(props) {
             >
               <MenuItem>
                 Quản lý tài khoản
-                <Link to="/admin/manager-user" />
+                <Link to="/admin/manage-user" />
               </MenuItem>
               <MenuItem>Quản lý câu hỏi</MenuItem>
               <MenuItem>Quản lý bài tập</MenuItem>
